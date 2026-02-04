@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>AI Background Remover | Docuhub.xyz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sarabun:wght@300;600&display=swap" rel="stylesheet">
+    <style>:root{--canva-gradient:linear-gradient(135deg,#8e2de2,#4a00e0);--primary-color:#7d2ae8;--success-color:#00c4cc;--bg-color:#f6f9fc;--text-main:#2d3436}*{box-sizing:border-box}body{font-family:Inter,Sarabun,sans-serif;background-color:var(--bg-color);margin:0;display:flex;flex-direction:column;align-items:center;min-height:100vh;color:var(--text-main)}header{width:100%;padding:20px;text-align:center;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}.brand-link{text-decoration:none;color:var(--primary-color);font-weight:700;font-size:1.2rem;letter-spacing:1px}.container{background:#fff;padding:30px;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.08);width:90%;max-width:500px;margin:40px auto;text-align:center}h2{margin-top:0;font-weight:600;background:var(--canva-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.drop-area{border:2px dashed #e0e0e0;border-radius:20px;padding:30px;margin:20px 0;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);background:#fdfdfd;min-height:250px;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden}.drop-area:hover{border-color:var(--primary-color);background:#f9f6ff}#preview-img{max-width:100%;max-height:350px;border-radius:12px;display:none;box-shadow:0 5px 15px rgba(0,0,0,.1)}.btn-group{display:flex;flex-direction:column;gap:12px;margin-top:25px}button{width:100%;padding:16px;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:transform .2s,filter .2s;display:flex;align-items:center;justify-content:center;gap:8px}button:active{transform:scale(.98)}#remove-btn{background:var(--canva-gradient);color:#fff}#download-btn{background-color:var(--success-color);color:#fff}button:disabled{background:#e0e0e0!important;color:#a0a0a0;cursor:not-allowed}footer{margin-top:auto;padding:20px;font-size:.85rem;color:#b0b0b0}.loader{display:none;border:3px solid #f3f3f3;border-top:3px solid var(--primary-color);border-radius:50%;width:24px;height:24px;animation:spin 1s linear infinite;margin:15px auto}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@media (min-width:600px){.btn-group{flex-direction:row}}</style>
+</head>
+<body>
+<header><a href="https://www.docuhub.xyz" class="brand-link">WWW.DOCUHUB.XYZ</a></header>
+<div class="container">
+    <h2>AI Magic Eraser</h2>
+    <p style="color:#7f8c8d;font-size:.9rem">แตะเพื่ออัปโหลด หรือ <b>Ctrl+V</b> เพื่อวางรูป</p>
+    <div id="drop-area" class="drop-area">
+        <div id="instruction-content">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <p style="color:#ccc;margin-top:10px">เลือกรูปภาพของคุณ</p>
+        </div>
+        <img id="preview-img" alt="Preview">
+    </div>
+    <div class="loader" id="loader"></div><p id="status-text"></p>
+    <div class="btn-group">
+        <button id="remove-btn" disabled>✨ ลบพื้นหลัง</button>
+        <button id="download-btn" disabled>💾 ดาวน์โหลด PNG</button>
+    </div>
+</div>
+<footer>&copy; 2026 Powered by <a href="https://www.docuhub.xyz" style="color:#b0b0b0;text-decoration:none">Docuhub.xyz</a></footer>
+<script>
+/** ⚠️ Protected Logic by Docuhub.xyz **/
+const _0x=document,_0k='KCogwYiULmu3adXM5k1oKe1X',_0a=_0x.getElementById('drop-area'),_0b=_0x.getElementById('preview-img'),_0c=_0x.getElementById('remove-btn'),_0d=_0x.getElementById('download-btn'),_0e=_0x.getElementById('status-text'),_0f=_0x.getElementById('loader'),_0g=_0x.getElementById('instruction-content');let _0h=null,_0i=null;function _0p(_f){if(!_f)return;_0h=_f;const r=new FileReader();r.onload=e=>{_0b.src=e.target.result;_0b.style.display='block';_0g.style.display='none';_0c.disabled=!1;_0d.disabled=!0;_0e.innerText="✨ รูปภาพพร้อมสำหรับใช้งาน!";_0e.style.color="#2ecc71"};r.readAsDataURL(_f)}_0x.addEventListener('paste',e=>{const t=e.clipboardData.items;for(let i=0;i<t.length;i++)if(t[i].type.indexOf('image')!==-1)_0p(t[i].getAsFile())});_0c.addEventListener('click',async()=>{if(!_0h)return;_0f.style.display='block';_0c.disabled=!0;_0e.innerText="AI กำลังเสกความว่างเปล่า...";_0e.style.color="#7d2ae8";const f=new FormData();f.append('image_file',_0h);f.append('size','auto');try{const r=await fetch('https://api.remove.bg/v1.0/removebg',{method:'POST',headers:{'X-Api-Key':_0k},body:f});if(r.ok){const b=await r.blob();_0i=URL.createObjectURL(b);_0b.src=_0i;_0d.disabled=!1;_0e.innerText="ลบพื้นหลังสำเร็จแล้ว!"}else{const e=await r.json();_0e.innerText="โอ๊ะ! "+(e.errors[0].title||"Error");_0e.style.color="#e74c3c"}}catch(e){_0e.innerText="การเชื่อมต่อขัดข้อง";_0e.style.color="#e74c3c"}finally{_0f.style.display='none';_0c.disabled=!1}});_0d.addEventListener('click',()=>{if(!_0i)return;const a=_0x.createElement('a');a.href=_0i;a.download='docuhub-removed-bg.png';a.click()});_0a.onclick=()=>{const i=_0x.createElement('input');i.type='file';i.accept='image/*';i.onchange=e=>_0p(e.target.files[0]);i.click()};
+</script>
+</body>
+</html>
